@@ -12,6 +12,8 @@ from sqlalchemy import exc
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from functools import wraps
 from flask import abort
+import os
+from dotenv import load_dotenv  # pip install python-dotenv
 
 
 # Create admin-only decorator
@@ -27,7 +29,8 @@ def admin_only(f):
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+load_dotenv("C:/Users/user/Documents/EnviromentVariables/.env.txt")
+app.config['SECRET_KEY'] = os.getenv("SECRETKEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
